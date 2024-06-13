@@ -28,6 +28,12 @@
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
 
+        <!--AOP-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!--    log-->
         <dependency> <!-- exclude the default logging starter-->
             <groupId>org.springframework.boot</groupId>
@@ -72,6 +78,12 @@
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
         </dependency>
 
+
+        <!--  JWT：用于生成token，，用户校验 -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
         <!-- MyBatis Plus Starter：用于简化 MyBatis 的使用 -->
         <dependency>
             <groupId>com.baomidou</groupId>

@@ -13,68 +13,58 @@ import java.io.Serializable;
  * @CreateTime:2023/12/815:59
  */
 
-//统一响应格式。实体类，或者这个类严格来说叫响应体
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class ResponseResult<T> implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private static final String DEFAULT_SUCCESS_MSG = "success";
+    private static final String DEFAULT_ERROR_MSG = "An error occurred";
+    private static final int DEFAULT_SUCCESS_CODE = 200;
+    private static final int DEFAULT_ERROR_CODE = 500;
+
     private Integer code;
     private String msg;
     private T data;
 
-    public ResponseResult(Integer code, T data) {
-        this.code = code;
-        this.data = data;
+
+    // Helper method to set common properties
+    private static <T> ResponseResult<T> build(Integer code, String msg, T data) {
+        return new ResponseResult<>(code, msg, data);
     }
 
-    public ResponseResult(Integer code, String msg, T data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
+    public static <T> ResponseResult<T> ok(T data) {
+        return build(DEFAULT_SUCCESS_CODE, DEFAULT_SUCCESS_MSG, data);
     }
 
-    public ResponseResult(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
+    public static <T> ResponseResult<T> ok(String msg) {
+        return build(DEFAULT_SUCCESS_CODE, msg, null);
     }
 
-    public ResponseResult<?> error(Integer code, T data) {
-        this.code = code;
-        this.data = data;
-        return this;
+    public static <T> ResponseResult<T> ok(String msg, T data) {
+        return build(DEFAULT_SUCCESS_CODE, msg, data);
     }
 
-    public ResponseResult<?> error(Integer code, String msg, T data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-        return this;
+    public static <T> ResponseResult<T> ok(Integer code, String msg, T data) {
+        return build(code, msg, data);
     }
 
-    public ResponseResult<?> error(T data) {
-        this.code = 500;
-        this.msg = "error";
-        this.data = data;
-        return this;
+
+    public static <T> ResponseResult<T> error(T data) {
+        return build(DEFAULT_ERROR_CODE, DEFAULT_ERROR_MSG, data);
     }
 
-    public ResponseResult<?> ok(Integer code, T data) {
-        this.code = code;
-        this.data = data;
-        return this;
+    public static <T> ResponseResult<T> error(String msg) {
+        return build(DEFAULT_ERROR_CODE, msg, null);
     }
 
-    public ResponseResult<?> ok(Integer code, String msg, T data) {
-        this.code = code;
-        this.data = data;
-        this.msg = msg;
-        return this;
+    public static <T> ResponseResult<T> error(String msg, T data) {
+        return build(DEFAULT_ERROR_CODE, msg, data);
     }
 
-    public ResponseResult<?> ok(T data) {
-        this.code = 200;
-        this.msg = "error";
-        this.data = data;
-        return this;
+    public static <T> ResponseResult<T> error(Integer code, String msg, T data) {
+        return build(code, msg, data);
     }
 }

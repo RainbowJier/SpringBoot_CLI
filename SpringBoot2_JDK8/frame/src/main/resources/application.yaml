@@ -9,7 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
-#  Redis
+  #  Redis
   data:
     redis:
       database: 0 # Indicate which database on Redis you want to manipulate(??).
@@ -26,19 +26,14 @@ spring:
 
   #Swagger
   # After Springboot 2.6 version, you need to configure ant_path_matcher to make swagger work properly(???).
-  mvc:
-    path match:
-      matching-strategy: ant_path_matcher
-
-logging:
-  config: classpath:log4j2.xml   # Specify the configuration file location for log4j2.
-  level:
-    com.example.myapp: DEBUG     # Set the log level of com.example.myapp package to DEBUG.
-  pattern:
-    dateformat: HH:mm:ss
+#  mvc:
+#    path match:
+#      matching-strategy: ant_path_matcher
 
 #MybatisPlus
 mybatis-plus:
+  #  xml文件地址
+  mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true  # map underscore
     default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler   # EnumHandler
@@ -51,9 +46,19 @@ mybatis-plus:
       logic-delete-value: 1      # Deleted value is 1
       logic-not-delete-value: 0   # Not deleted value is 0
 
-# knife4j
-# http://localhost:9090/doc.html
+# knife3j
+# http://localhost:8080/doc.html
 knife4j:
   enable: true
   setting:
     language: zh_cn
+  openapi:
+    title: UMSDemo
+    description: "`I'm Gamer`,**你知道吗**"
+    email: 3021809270@qqc.com
+    concat: RainbowJier
+    url: https://docs.xiaominfo.com
+    version: v4.0
+    license: Apache 2.0
+    license-url: https://stackoverflow.com/
+    terms-of-service-url: https://stackoverflow.com/

@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.0</version>
+        <version>2.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -25,70 +25,99 @@
 
     <!-- 版本属性 -->
     <properties>
-        <jwt.version>0.9.0</jwt.version> <!-- JWT version -->
-        <spring-boot.version>2.5.0</spring-boot.version> <!-- Spring Boot version -->
-        <fastjson.version>1.2.75</fastjson.version> <!-- Fastjson version -->
-        <hutool.version>5.8.27</hutool.version> <!-- Hutool version -->
-        <knife4j-openapi3.version>4.4.0</knife4j-openapi3.version> <!-- Knife4j OpenAPI version -->
-        <swagger.version>3.0.0</swagger.version> <!-- Swagger version -->
-        <springboot-devtools.version>3.1.1</springboot-devtools.version> <!-- Spring Boot DevTools version -->
-        <junit.version>4.12</junit.version> <!-- JUnit version -->
-        <mybatis-plus.version>3.5.7</mybatis-plus.version> <!-- MyBatis Plus version -->
-        <mysql.version>8.0.30</mysql.version> <!-- MySQL version -->
-        <lombok.version>1.18.28</lombok.version> <!-- Lombok version -->
-        <druid.version>1.2.8</druid.version> <!-- Druid version -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- Project source encoding -->
-        <java.version>1.8</java.version> <!-- JDK version -->
+        <java.version>8</java.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+
+        <spring.boot.version>2.5.5</spring.boot.version>
+        <spring.cloud.version>2020.0.4</spring.cloud.version>
+        <alibaba.cloud.version>2021.1</alibaba.cloud.version>
+
+        <lombok.version>1.18.28</lombok.version>
+        <commons.lang3.version>3.9</commons.lang3.version>
+        <commons.codec.version>1.15</commons.codec.version>
+        <xxl.job.version>2.3.0</xxl.job.version>
+
+        <aliyun.oss.version>3.8.0</aliyun.oss.version>
+        <kaptcha.version>1.1.0</kaptcha.version>
+        <docker.image.prefix>dcloud</docker.image.prefix>
+
+        <jwt.version>0.9.0</jwt.version>
+        <sharding.jdbc.version>5.1.1</sharding.jdbc.version>
+        <skipTests>true</skipTests>
+        <junit.version>4.12</junit.version>
+        <druid.version>1.2.8</druid.version>
+        <fastjson.version>1.2.79</fastjson.version>
+        <hutool.version>5.8.27</hutool.version>
+        <knife4j.version>4.4.0</knife4j.version>
+
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <mysql.version>8.0.30</mysql.version>
+        <redission.version>3.10.1</redission.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Boot BOM (Bill of Materials) -->
+            <!-- Spring Boot 依赖管理 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
-            <!-- Fastjson for JSON processing -->
+            <!-- Spring Cloud 依赖管理 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Spring Cloud Alibaba 依赖管理 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${alibaba.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Fastjson -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
 
-            <!-- Hutool: a set of tools for common development tasks -->
+            <!-- Hutool 工具类库 -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
 
-            <!-- Knife4j: Swagger UI enhancement for Spring Boot -->
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
-                <version>${knife4j-openapi3.version}</version>
-            </dependency>
-
-            <!-- MyBatis Plus Starter: simplifies MyBatis usage -->
+            <!-- MyBatis Plus Starter：用于简化 MyBatis 的使用 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
-            <!-- JJWT: JSON Web Token implementation -->
+
+            <!--jwt依赖-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jwt.version}</version>
             </dependency>
 
-            <!-- MySQL Connector/J: MySQL JDBC driver -->
+            <!-- MySQL 连接驱动 -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -96,20 +125,62 @@
                 <scope>runtime</scope>
             </dependency>
 
-            <!-- Druid: high-performance JDBC connection pool -->
+            <!-- Druid 数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
             </dependency>
 
-            <!-- Lombok: simplifies Java development by providing annotations -->
+            <!-- 引入 Lombok：简化 Java 开发中的代码 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
+            </dependency>
+
+            <!--⽤于加密-->
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons.codec.version}</version>
+            </dependency>
+
+            <!--
+            -验证码kaptcha依赖包
+            https://mvnrepository.com/artifact/com.github.penggle/kaptcha
+            -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>kaptcha-spring-boot-starter</artifactId>
+                <version>${kaptcha.version}</version>
+            </dependency>
+
+            <!--分布式锁-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redission.version}</version>
+            </dependency>
+
+            <!-- shardingsphere -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+                <version>${sharding.jdbc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -1,6 +1,5 @@
 package com.example.common.interceptor;
 
-import com.alibaba.cloud.commons.lang.StringUtils;
 import com.example.common.entity.LoginUser;
 import com.example.common.util.JWTUtil;
 import com.example.common.util.JsonData;
@@ -8,6 +7,7 @@ import com.example.common.enums.BizCodeEnum;
 import com.example.common.util.CommonUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.HandlerInterceptor;

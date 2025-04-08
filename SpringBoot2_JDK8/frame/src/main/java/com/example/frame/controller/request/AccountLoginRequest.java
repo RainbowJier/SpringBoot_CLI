@@ -1,5 +1,6 @@
-package com.example.frame.model.request;
+package com.example.frame.controller.request;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountLoginRequest {
+
+    @ApiModelProperty(value = "手机号")
     private String phone;
 
+    @ApiModelProperty(value = "密码")
     private String pwd;
 }

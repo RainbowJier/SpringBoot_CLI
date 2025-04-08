@@ -3,8 +3,6 @@ package com.example.frame;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -12,7 +10,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Slf4j
 @ComponentScan(basePackages  = {"com.example.frame", "com.example.common"})
 @EnableTransactionManagement  // Open Database Transaction.
-@EnableFeignClients          // Enable OpenFeign
 @SpringBootApplication
 public class FrameApplication {
 

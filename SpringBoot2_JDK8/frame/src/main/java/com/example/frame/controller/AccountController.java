@@ -22,12 +22,6 @@ public class AccountController {
     @Resource
     private AccountService accountService;
 
-    /**
-     * register
-     * <p>
-     * register user will get the free traffic.
-     */
-
     @ApiOperation(value = "注册功能")
     @ApiImplicitParams({
 //            @ApiImplicitParam(name = "token",value = "请求token",required = true,paramType = "header"),

@@ -1,19 +1,19 @@
 # SpringBoot_Module
 
-## 🎯Tech Stack
+## 🧰 技术栈说明
 
-| Dependency/Property | Version |
-|---------------------|---------|
-| jwt                 | 0.9.0   |
-| spring-boot         | 2.5.0   |
-| fastjson            | 1.2.75  |
-| hutool              | 5.8.27  |
-| knife4j-openapi3    | 4.4.0   |
-| swagger             | 3.0.0   |
-| springboot-devtools | 3.1.1   |
-| junit               | 4.12    |
-| mybatis-plus        | 3.5.7   |
-| mysql               | 8.0.30  |
-| lombok              | 1.18.28 |
-| druid               | 1.2.8   |
-| java                | 1.8     |
+| 依赖 / 属性             | 版本      | 描述                                                         |
+|------------------------|-----------|--------------------------------------------------------------|
+| **Java**               | 1.8       | 核心开发语言，成熟稳定，生态完善                             |
+| **Spring Boot**        | 2.5.0     | 应用框架核心，简化配置，快速构建独立部署的服务              |
+| **MyBatis-Plus**       | 3.5.7     | 基于 MyBatis 的增强框架，提供强大的 CRUD 封装与代码生成器   |
+| **MySQL**              | 8.0.30    | 主流关系型数据库，存储业务数据                               |
+| **Druid**              | 1.2.8     | 阿里巴巴出品的数据库连接池，支持监控与 SQL 防火墙            |
+| **JWT (java-jwt)**     | 0.9.0     | JSON Web Token 实现，常用于用户认证与授权                    |
+| **FastJSON**           | 1.2.75    | 高性能的 JSON 解析库，用于对象与 JSON 数据互转               |
+| **Hutool**             | 5.8.27    | 工具类库集合，封装大量 Java 常用功能，提高开发效率           |
+| **Lombok**             | 1.18.28   | 简化实体类和 DTO 编写，自动生成 getter/setter 等             |
+| **Knife4j (OpenAPI3)** | 4.4.0     | Swagger 增强版，提供更友好的 API 文档界面                   |
+| **Swagger (core)**     | 3.0.0     | 用于自动生成 RESTful API 文档                                |
+| **Spring Boot DevTools** | 3.1.1   | 热部署支持，提高开发体验（需 IDE 配合）                      |
+| **JUnit**              | 4.12      | 单元测试框架，保障业务逻辑的正确性                           |

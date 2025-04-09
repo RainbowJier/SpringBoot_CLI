@@ -1,6 +1,7 @@
 package com.example.frame.controller;
 
 import com.example.common.util.JsonData;
+import com.example.frame.aop.annotation.Systemlog;
 import com.example.frame.controller.request.AccountLoginRequest;
 import com.example.frame.controller.request.AccountRegisterRequest;
 import com.example.frame.service.AccountService;
@@ -22,6 +23,8 @@ public class AccountController {
     @Resource
     private AccountService accountService;
 
+
+
     @ApiOperation(value = "注册功能")
     @ApiImplicitParams({
 //            @ApiImplicitParam(name = "token",value = "请求token",required = true,paramType = "header"),
@@ -29,12 +32,14 @@ public class AccountController {
 //            @ApiImplicitParam(name = "name",value = "文件名称",required = true),
     })
     @PostMapping("register")
+    @Systemlog(description = "注册功能")
     public JsonData register(@RequestBody AccountRegisterRequest accountRegisterRequest) {
         return accountService.register(accountRegisterRequest);
     }
 
     @ApiOperation(value = "登录功能")
     @PostMapping("login")
+    @Systemlog(description = "登录功能")
     public JsonData login(@RequestBody AccountLoginRequest accountLoginRequest) {
         return accountService.login(accountLoginRequest);
     }

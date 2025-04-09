@@ -1,7 +1,7 @@
 package com.example.frame.aop;
 
 import com.alibaba.fastjson.JSON;
-import com.example.frame.aop.annotation.Systemlog;
+import com.example.frame.aop.annotation.SysLogAnno;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -17,11 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 @Aspect
 @Slf4j
-public class LogAspect {
+public class SysLogAop {
     /**
-     * 设置切入点
+     * 设置切入点d的注解
      */
-    @Pointcut("@annotation(com.example.frame.annotation.Systemlog)")
+    @Pointcut("@annotation(com.example.frame.aop.annotation.SysLogAnno)")
     public void pt() {
 
     }
@@ -56,7 +56,7 @@ public class LogAspect {
         HttpServletRequest request = requestAttributes.getRequest();
 
         // 获取被增强方法的注解对象
-        Systemlog systemlog = getSystemlog(joinPoint);
+        SysLogAnno systemlog = getSystemlog(joinPoint);
 
         log.info("======================Start======================");
         log.info("访问IP    : {}", request.getRemoteHost());
@@ -74,9 +74,9 @@ public class LogAspect {
     /**
      * 获取注解对象
      */
-    private Systemlog getSystemlog(ProceedingJoinPoint joinPoint) {
+    private SysLogAnno getSystemlog(ProceedingJoinPoint joinPoint) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        return methodSignature.getMethod().getAnnotation(Systemlog.class);
+        return methodSignature.getMethod().getAnnotation(SysLogAnno.class);
     }
 
 }

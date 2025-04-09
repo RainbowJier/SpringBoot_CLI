@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 public class AccountServiceImpl implements AccountService {
     @Override
     public JsonData register(AccountRegisterRequest accountRegisterRequest) {
-        return null;
+        return JsonData.buildSuccess();
     }
 
     @Override
     public JsonData login(AccountLoginRequest accountLoginRequest) {
-        return null;
+        return JsonData.buildSuccess();
     }
 }

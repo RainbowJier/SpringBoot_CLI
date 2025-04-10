@@ -4,6 +4,11 @@ import com.example.frame.model.JsonData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * 自定义异常处理
+ */
+
 @Slf4j
 @RestControllerAdvice
 public class CustomExceptionHandler {

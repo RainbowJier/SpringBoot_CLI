@@ -1,5 +1,7 @@
 package com.example.frame.utils;
 
+import com.example.frame.enums.BizCodeEnum;
+import com.example.frame.exception.BizException;
 import com.example.frame.model.entity.LoginUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -18,11 +20,11 @@ import java.util.Date;
 @Slf4j
 public class JWTUtil {
 
-    private static final String SUBJECT = "xdclass";
+    private static final String SUBJECT = "Frank";
 
-    private static final String SECRET = "xdclass.net";
+    private static final String SECRET = "Frank";
 
-    private static final String TOKEN_PREFIX = "dcloud_account";
+    private static final String TOKEN_PREFIX = "James";
 
     private static final long EXPIRED = 1000 * 60 * 60 * 24 * 7;
 
@@ -31,7 +33,7 @@ public class JWTUtil {
      */
     public static String generateJsonToken(LoginUser loginUser) {
         if (loginUser == null) {
-            throw new NullPointerException("User is not exist.");
+            throw new NullPointerException("用户不存在");
         }
 
         String token = Jwts.builder()
@@ -51,9 +53,8 @@ public class JWTUtil {
         return token;
     }
 
-
     /**
-     * Check validity of token.
+     * 校验 token 的合法性
      */
     public static Claims checkJWT(String token) {
         try{
@@ -62,8 +63,8 @@ public class JWTUtil {
                     .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                     .getBody();
         }catch (Exception e){
-            log.error("jwt verify error:{}",e.getMessage());
-            return null;
+            log.error("token 校验失败:{}",e.getMessage());
+            throw new BizException(BizCodeEnum.TOKEN_INVALID);
         }
     }
 

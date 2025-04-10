@@ -13,6 +13,13 @@ import lombok.*;
 @NoArgsConstructor
 public enum BizCodeEnum {
     /**
+     * 用户登录
+     */
+    TOKEN_INVALID(10000, "token 校验失败"),
+
+
+
+    /**
      * short link group.
      */
     GROUP_REPEAT(23001, "分组名重复"),

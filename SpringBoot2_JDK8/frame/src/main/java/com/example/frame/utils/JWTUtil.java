@@ -1,6 +1,6 @@
-package com.example.common.util;
+package com.example.frame.utils;
 
-import com.example.common.entity.LoginUser;
+import com.example.frame.model.entity.LoginUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -18,32 +18,20 @@ import java.util.Date;
 @Slf4j
 public class JWTUtil {
 
-    /**
-     * 主题
-     */
     private static final String SUBJECT = "xdclass";
 
-    /**
-     * 秘钥
-     */
     private static final String SECRET = "xdclass.net";
 
-    /**
-     * 令牌前缀
-     */
     private static final String TOKEN_PREFIX = "dcloud_account";
 
-    /**
-     * 过期时间，七天
-     */
     private static final long EXPIRED = 1000 * 60 * 60 * 24 * 7;
 
     /**
-     * 生成ytoken
+     * generate token.
      */
     public static String generateJsonToken(LoginUser loginUser) {
         if (loginUser == null) {
-            throw new NullPointerException("用户不存在");
+            throw new NullPointerException("User is not exist.");
         }
 
         String token = Jwts.builder()
@@ -65,20 +53,19 @@ public class JWTUtil {
 
 
     /**
-     * 校验token
+     * Check validity of token.
      */
     public static Claims checkJWT(String token) {
         try{
-            Claims claims = Jwts.parser().setSigningKey(SECRET)
-                    .parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody();
-
-            return claims;
+            return Jwts.parser()
+                    .setSigningKey(SECRET)
+                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+                    .getBody();
         }catch (Exception e){
-            log.error("jwt校验异常:{}",e.getMessage());
+            log.error("jwt verify error:{}",e.getMessage());
             return null;
         }
     }
-
 
 
 }

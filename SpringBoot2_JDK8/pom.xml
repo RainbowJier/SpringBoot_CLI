@@ -13,7 +13,6 @@
 
     <!-- submodules-->
     <modules>
-        <module>common</module>
         <module>frame</module>
     </modules>
 

@@ -1,4 +1,4 @@
-package com.example.common.util;
+package com.example.frame.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;

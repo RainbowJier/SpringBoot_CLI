@@ -1,18 +1,11 @@
-package com.example.common.exception;
+package com.example.frame.exception;
 
-import com.example.common.util.JsonData;
+import com.example.frame.utils.JsonData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @Description：TODO
- * @Author： RainbowJier
- * @Data： 2024/8/12 21:37
- */
-
-// Response Json Data.
-@RestControllerAdvice
 @Slf4j
+@RestControllerAdvice
 public class CustomExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)

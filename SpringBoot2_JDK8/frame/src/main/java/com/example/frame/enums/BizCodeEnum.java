@@ -1,4 +1,4 @@
-package com.example.common.enums;
+package com.example.frame.enums;
 
 import lombok.*;
 

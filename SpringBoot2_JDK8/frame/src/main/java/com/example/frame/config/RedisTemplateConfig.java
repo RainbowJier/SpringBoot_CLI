@@ -1,4 +1,4 @@
-package com.example.common.config;
+package com.example.frame.config;
 
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -11,14 +11,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-/**
- * @Description：RedisTemplate配置类
- * @Author： RainbowJier
- * @Data： 2024/9/22 14:05
- */
-
 @Configuration
-public class RedisTemplateConfiguration {
+public class RedisTemplateConfig {
     @Bean
     public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
         RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();

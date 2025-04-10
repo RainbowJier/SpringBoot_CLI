@@ -1,4 +1,4 @@
-package com.example.common.constant;
+package com.example.frame.constant;
 
 /**
  * @Description：TODO
@@ -19,10 +19,4 @@ public class RedisKey {
      * 第二个：token
      */
     public  static final String  SUBMIT_ORDER_TOKEN_KEY = "order:submit:%s:%s";
-
-
-    /**
-     * total traffic every day.
-     */
-    public static final String DAY_TOTAL_TRAFFIC = "lock:traffic:day_total:%s";
 }

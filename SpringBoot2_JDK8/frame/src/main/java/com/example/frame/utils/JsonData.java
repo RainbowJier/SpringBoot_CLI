@@ -1,8 +1,8 @@
-package com.example.common.util;
+package com.example.frame.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.example.common.enums.BizCodeEnum;
+import com.example.frame.enums.BizCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,17 +19,10 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class JsonData {
-    /**
-     * Code represents the status code.
-     */
     private Integer code;
-    /**
-     * Response Data.
-     */
+
     private Object data;
-    /**
-     * Description of the response.
-     */
+
     private String msg;
 
     /**
@@ -49,7 +42,6 @@ public class JsonData {
     /**
      * Successful with response data.
      */
-
     public static JsonData buildSuccess(Object data) {
         return new JsonData(0, data, null);
     }
@@ -70,7 +62,7 @@ public class JsonData {
     }
 
     /**
-     * Custom status code and message.
+     * Custom response code and message.
      */
     public static JsonData buildCodeAndMsg(int code, String msg) {
         return new JsonData(code, null, msg);

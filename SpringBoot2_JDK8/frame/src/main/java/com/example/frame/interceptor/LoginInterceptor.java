@@ -1,10 +1,10 @@
-package com.example.common.interceptor;
+package com.example.frame.interceptor;
 
-import com.example.common.entity.LoginUser;
-import com.example.common.util.JWTUtil;
-import com.example.common.util.JsonData;
-import com.example.common.enums.BizCodeEnum;
-import com.example.common.util.CommonUtil;
+import com.example.frame.enums.BizCodeEnum;
+import com.example.frame.model.entity.LoginUser;
+import com.example.frame.utils.CommonUtil;
+import com.example.frame.utils.JWTUtil;
+import com.example.frame.utils.JsonData;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

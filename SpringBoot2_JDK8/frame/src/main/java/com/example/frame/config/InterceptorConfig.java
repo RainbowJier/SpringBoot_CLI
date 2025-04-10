@@ -1,6 +1,6 @@
 package com.example.frame.config;
 
-import com.example.common.interceptor.LoginInterceptor;
+import com.example.frame.interceptor.LoginInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,11 +13,9 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/api/account/*/**","/api/traffic/*/**")
-                .excludePathPatterns(
-                        "/api/account/*/register","/api/account/*/login",
-                        "/api/notify/captcha","/api/notify/send_code",
-                        "/api/traffic/*/reduce"
-                );
+                // 拦截规则
+                .addPathPatterns("")
+                // 不拦截规则
+                .excludePathPatterns("");
     }
 }

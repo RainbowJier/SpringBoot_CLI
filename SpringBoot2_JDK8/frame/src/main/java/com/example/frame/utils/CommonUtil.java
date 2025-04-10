@@ -1,4 +1,4 @@
-package com.example.common.util;
+package com.example.frame.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.shaded.com.google.common.hash.Hashing;
@@ -16,7 +16,7 @@ import java.util.*;
 @Slf4j
 public class CommonUtil {
     /**
-     * Get ip
+     * Get IP address.
      */
     public static String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
@@ -30,7 +30,6 @@ public class CommonUtil {
                 ipAddress = request.getHeader("WL-Proxy-Client-IP");
             }
             if (ipAddress == null || ipAddress.isEmpty() || "unknown".equalsIgnoreCase(ipAddress)) {
-
                 ipAddress = request.getRemoteAddr();
                 if (ipAddress.equals("127.0.0.1")) {
 
@@ -46,7 +45,7 @@ public class CommonUtil {
                 }
             }
 
-            // 对于通过多个代理的情况，第⼀个IP为客户端真实 IP,多个IP按照','分割
+            // get first ip address
             if (ipAddress != null && ipAddress.length() > 15) {
                 if (ipAddress.indexOf(",") > 0) {
                     ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
@@ -165,40 +164,32 @@ public class CommonUtil {
     }
 
     /**
-     * murmur hash算法
+     * murmur hash algorithm.
      */
     public static long murmurHash32(String param) {
         return Hashing.murmur3_32().hashUnencodedChars(param).padToLong();
     }
 
-    /**
-     * URL增加前缀
-     */
-    public static String addUrlPrefix(String url) {
-        return IDUtil.generateSnowFlakeID() + "&" + url;
-    }
 
     /**
-     * URL移除前缀
+     * remove URL prefix.
      */
     public static String removeUrlPrefix(String url) {
         return url.substring(url.indexOf("&") + 1);
     }
 
     /**
-     * 如果短链码重复，则调用这个⽅法
-     * url前缀编号+1，如果还是用雪花算法，则容易C和B端不⼀致，所以采⽤原先的id递增1
+     * If generated short code is duplicate, call this method to generate new one.
+     * prefix plus 1, if we still use snowflake algorithm, it may cause the C and B end not consistent,
+     * so use the original id plus 1.
      */
     public static String addUrlPrefixVersion(String url) {
-        // 前缀
-        String result = url.substring(0, url.indexOf("&"));
+        String prefix = url.substring(0, url.indexOf("&"));
+        Long newPrefix = Long.parseLong(prefix) + 1;
 
         String originalUrl = url.substring(url.indexOf("&") + 1);
 
-        //新id编号
-        Long newIdValue = Long.parseLong(result) + 1;
-
-        return newIdValue + "&" + originalUrl;
+        return newPrefix + "&" + originalUrl;
     }
 
 

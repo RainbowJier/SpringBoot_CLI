@@ -1,9 +1,9 @@
 package com.example.frame.service.impl;
 
-import com.example.common.util.JsonData;
 import com.example.frame.controller.request.AccountLoginRequest;
 import com.example.frame.controller.request.AccountRegisterRequest;
 import com.example.frame.service.AccountService;
+import com.example.frame.utils.JsonData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

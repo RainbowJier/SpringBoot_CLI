@@ -1,10 +1,10 @@
 package com.example.frame.controller;
 
-import com.example.common.util.JsonData;
 import com.example.frame.aop.annotation.SysLogAnno;
 import com.example.frame.controller.request.AccountLoginRequest;
 import com.example.frame.controller.request.AccountRegisterRequest;
 import com.example.frame.service.AccountService;
+import com.example.frame.utils.JsonData;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;

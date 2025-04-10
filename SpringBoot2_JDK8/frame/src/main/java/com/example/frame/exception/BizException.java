@@ -1,6 +1,6 @@
-package com.example.common.exception;
+package com.example.frame.exception;
 
-import com.example.common.enums.BizCodeEnum;
+import com.example.frame.enums.BizCodeEnum;
 import lombok.Data;
 
 /**

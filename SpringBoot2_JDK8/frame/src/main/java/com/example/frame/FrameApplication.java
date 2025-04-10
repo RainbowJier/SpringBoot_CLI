@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Slf4j
-@ComponentScan(basePackages  = {"com.example.frame", "com.example.common"})
 @EnableTransactionManagement  // Open Database Transaction.
 @SpringBootApplication
 public class FrameApplication {

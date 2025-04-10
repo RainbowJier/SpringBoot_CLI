@@ -1,9 +1,9 @@
 package com.example.frame.service;
 
 
-import com.example.common.util.JsonData;
 import com.example.frame.controller.request.AccountLoginRequest;
 import com.example.frame.controller.request.AccountRegisterRequest;
+import com.example.frame.utils.JsonData;
 
 public interface AccountService{
     JsonData register(AccountRegisterRequest accountRegisterRequest);

@@ -1,7 +1,7 @@
 package com.example.frame.utils;
 
+import com.example.frame.model.JsonData;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.curator.shaded.com.google.common.hash.Hashing;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -162,14 +162,6 @@ public class CommonUtil {
             log.warn("Respond json data to the fronted exception: {}", e.getMessage());
         }
     }
-
-    /**
-     * murmur hash algorithm.
-     */
-    public static long murmurHash32(String param) {
-        return Hashing.murmur3_32().hashUnencodedChars(param).padToLong();
-    }
-
 
     /**
      * remove URL prefix.

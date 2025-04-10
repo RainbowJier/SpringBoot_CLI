@@ -1,4 +1,4 @@
-package com.example.frame.utils;
+package com.example.frame.model;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;

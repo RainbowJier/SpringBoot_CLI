@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(description = "用户注册请求实体类")
-public class AccountRegisterRequest {
+public class UserRegisterRequest {
     @ApiModelProperty(value = "头像地址")
     private String headImg;
 

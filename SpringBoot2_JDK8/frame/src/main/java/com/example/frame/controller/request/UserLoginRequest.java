@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountLoginRequest {
+public class UserLoginRequest {
 
     @ApiModelProperty(value = "手机号")
     private String phone;

@@ -27,7 +27,7 @@ public class Account implements Serializable {
     private Long accountNo;
 
     /**
-     * avator
+     * avatar
      */
     private String headImg;
 

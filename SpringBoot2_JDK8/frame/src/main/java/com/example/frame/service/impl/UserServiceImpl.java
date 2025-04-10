@@ -5,10 +5,9 @@ import com.example.frame.controller.request.UserRegisterRequest;
 import com.example.frame.mapper.UserMapper;
 import com.example.frame.model.entity.User;
 import com.example.frame.service.UserService;
-import com.example.frame.utils.JsonData;
+import com.example.frame.model.JsonData;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import io.vertx.core.json.Json;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

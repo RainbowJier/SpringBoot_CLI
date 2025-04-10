@@ -4,10 +4,10 @@ import com.example.frame.enums.BizCodeEnum;
 import com.example.frame.model.entity.LoginUser;
 import com.example.frame.utils.CommonUtil;
 import com.example.frame.utils.JWTUtil;
-import com.example.frame.utils.JsonData;
+import com.example.frame.model.JsonData;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -42,7 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         // 获取token
         String accessToken = request.getHeader("token");
-        if (!StringUtils.isNotBlank(accessToken)) {
+        if (StringUtils.isBlank(accessToken)) {
             // 有些情况，请求头中token可能为空，就从参数中获取token
             accessToken = request.getParameter("token");
         }

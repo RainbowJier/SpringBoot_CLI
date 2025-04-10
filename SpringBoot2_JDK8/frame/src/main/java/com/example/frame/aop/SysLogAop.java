@@ -13,6 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 @Component
 @Aspect
@@ -37,27 +38,30 @@ public class SysLogAop {
     public Object printLog(ProceedingJoinPoint joinPoint) throws Throwable {
         Object ret;
         try {
-            handleBefore(joinPoint);
+            // 获取当前请求的属性
+            ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            HttpServletRequest request = requestAttributes.getRequest();
 
-            //这是目标方法执行完成，上一行是目标方法未执行，下一行是目标方法已经执行
-            ret = joinPoint.proceed();
+            // 获取注解对象
+            SysLogAnno systemlog = getSystemlog(joinPoint);
 
-            handleAfter(ret);
+            handleBefore(request, joinPoint, systemlog);
+
+            ret = joinPoint.proceed(); // 执行目标方法
+
+            handleAfter(ret, joinPoint, systemlog, request);
+
         } finally {
-            log.info("=======================end=======================" + System.lineSeparator());
+            log.info("=======================End=======================" + System.lineSeparator());
         }
-
         return ret;
     }
 
-    private void handleBefore(ProceedingJoinPoint joinPoint) {
-        // 获取当前请求的属性
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = requestAttributes.getRequest();
 
-        // 获取被增强方法的注解对象
-        SysLogAnno systemlog = getSystemlog(joinPoint);
-
+    /**
+     * 处理请求前，打印日志信息
+     */
+    private void handleBefore(HttpServletRequest request, ProceedingJoinPoint joinPoint, SysLogAnno systemlog) {
         log.info("======================Start======================");
         log.info("访问IP    : {}", request.getRemoteHost());
         log.info("请求URL   : {}", request.getRequestURL());
@@ -67,8 +71,26 @@ public class SysLogAop {
         log.info("传入参数   : {}", JSON.toJSONString(joinPoint.getArgs()));
     }
 
-    private void handleAfter(Object ret) {
+
+    private void handleAfter(Object ret, ProceedingJoinPoint joinPoint, SysLogAnno systemlog, HttpServletRequest request) {
         log.info("返回参数   : {}", JSON.toJSONString(ret));
+        insertLog(systemlog, joinPoint, request, ret);
+    }
+
+    private void insertLog(SysLogAnno sysLogAnno, ProceedingJoinPoint joinPoint, HttpServletRequest request, Object result) {
+        String ip = request.getRemoteHost();
+        String desc = sysLogAnno.description();    // 操作描述
+        String operateType = sysLogAnno.operateType().toString();
+        String params = JSON.toJSONString(joinPoint.getArgs());
+
+        log.info("【操作日志】操作描述     : {}", desc);
+        log.info("【操作日志】操作类型     : {}", operateType);
+        log.info("【操作日志】IP地址   : {}", ip);
+        log.info("【操作日志】请求参数     : {}", params);
+        log.info("【操作日志】时间     : {}", LocalDateTime.now());
+
+        // TODO: 实际插入数据库、消息队列或其他持久化操作
+
     }
 
     /**
